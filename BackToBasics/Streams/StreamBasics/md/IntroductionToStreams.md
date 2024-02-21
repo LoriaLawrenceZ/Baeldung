@@ -4,7 +4,6 @@ In this article, we’ll have a quick look at one of the major pieces of new fun
 
 We’ll explain what streams are about and showcase the creation and *basic stream* operations with simple examples.
 
-
 # **2. Stream API**
 
 One of the major new features in Java 8 is the introduction of the stream functionality – [java.util.stream](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html) – which contains classes for processing sequences of elements.
@@ -150,8 +149,8 @@ Stream.empty().anyMatch(Objects::nonNull); // false
 Again, this is reasonable, as we can’t find an element satisfying this condition.
 
 ## **3.5. Reduction**
-*
-Stream* API allows reducing a sequence of elements to some value according to a specified function with the help of the *reduce()* method of the type *Stream*. This method takes two parameters: first – start value, second – an accumulator function.
+
+*Stream* API allows reducing a sequence of elements to some value according to a specified function with the help of the *reduce()* method of the type *Stream*. This method takes two parameters: first – start value, second – an accumulator function.
 
 Imagine that you have a *List<Integer>* and you want to have a sum of all these elements and some initial Integer (in this example 23). So, you can run the following code and result will be 26 (23 + 1 + 1 + 1).
 
