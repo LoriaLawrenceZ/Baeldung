@@ -859,54 +859,130 @@
     <div class="crossnote markdown-preview  ">
 
         <h1 id="1-overview"><strong>1. Overview</strong> </h1>
-        <p>This document will cover the following <strong>annotations of the Mockito library:</strong> @Mock, @Spy,
-            @Captor and @InectMocks</p>
+        <p>JUnit is one of the most popular unit-testing frameworks in the Java ecosystem. The JUnit 5 version contains
+            a number of exciting innovations, with <strong>the goal of supporting new features in Java 8 and
+                above</strong>, as well as enabling many different styles of testing.</p>
         <hr>
-        <h1 id="2-enable-mockito-annotations"><strong>2. Enable Mockito Annotations</strong> </h1>
-        <p>There are different ways to enable the use of annotations with Mockito tests.</p>
-        <h2 id="21-mockitojunitrunner"><strong>2.1. MockitoJUnitRunner</strong> </h2>
-        <p>The first option we have is to <strong>annotate the JUnit test with a MockitoJUnitRunner</strong></p>
-        <pre data-role="codeBlock" data-info="Java" class="language-java Java"><code><span class="token annotation punctuation">@ExtendWith</span><span class="token punctuation">(</span><span class="token class-name">MockitoExtension</span><span class="token punctuation">.</span><span class="token keyword keyword-class">class</span><span class="token punctuation">)</span>
-<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">MockitoAnnotationUnitTest</span> <span class="token punctuation">{</span>
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token punctuation">}</span>
+        <h1 id="2-maven-dependencies"><strong>2. Maven Dependencies</strong> </h1>
+        <p>Setting up to <strong>JUnit5.x.0</strong> is pretty straightfoward: we just need to add th following
+            dependency to out pom.xml:</p>
+        <pre data-role="codeBlock" data-info="Java" class="language-java Java"><code><span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">&gt;</span></span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>junit<span class="token operator">-</span>jupiter<span class="token operator">-</span>engine<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">5.9</span><span class="token number">.2</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>
+    <span class="token generics"><span class="token punctuation">&lt;</span>scope<span class="token punctuation">&gt;</span></span>test<span class="token operator">&lt;</span><span class="token operator">/</span>scope<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">&gt;</span>
 </code></pre>
-        <h2 id="22-mockitoannotationsopenmocks"><strong>2.2. MockitoAnnotations.openMocks()</strong> </h2>
-        <p>Alternatively, we can <strong>enable Mockito annotations programmatically</strong> by invoking
-            MockitoAnnotations.openMocks():</p>
-        <pre data-role="codeBlock" data-info="Java" class="language-java Java"><code><span class="token annotation punctuation">@BeforeEach</span>
-<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-void">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token class-name">MockitoAnnotations</span><span class="token punctuation">.</span><span class="token function">openMocks</span><span class="token punctuation">(</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-        <h2 id="23-mockitojunitrule"><strong>2.3. MockitoJUnit.rule()</strong> </h2>
-        <p>Lastly, we can use a <strong>MockitoJUnit.rule():</strong></p>
-        <pre data-role="codeBlock" data-info="Java" class="language-java Java"><code><span class="token keyword keyword-public">public</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">MockitoAnnotationsInitWithMockitoJUnitRuleUnitTest</span> <span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Rule</span>
-    <span class="token keyword keyword-public">public</span> <span class="token class-name">MockitoRule</span> initRule <span class="token operator">=</span> <span class="token class-name">MockitoJUnit</span><span class="token punctuation">.</span><span class="token function">rule</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token punctuation">}</span>
-</code></pre>
-        <p>In this case, we must remember to make our rule public.</p>
+        <p>Furthermore, there’s now direct support to run Unit tests on the JUnit Platform in Eclipse, as well as
+            IntelliJ. We can, of course, also run tests using the Maven Test goal.</p>
+        <p>On the other hand, IntelliJ supports JUnit 5 by default. Therefore, running JUnit 5 on IntelliJ is pretty
+            easy. We simply Right click –&gt; Run, or Ctrl-Shift-F10.</p>
+        <p>It’s important to note that this version <strong>requires Java 8 to work.</strong></p>
         <hr>
-        <h1 id="3-mock-annotation"><strong>3. @Mock Annotation</strong> </h1>
-        <p>The most widely used annotation in Mockito is @Mock. We can use @Mock to create and inject mocked instances
-            without having to call Mockito.mock manually.<br>
-            In the following example, we’ll create a mocked ArrayList manually without using the @Mock annotation:</p>
+        <h2 id="3-architecture"><strong>3. Architecture</strong> </h2>
+        <p>JUnit5 compromises several different modules from three different sub-projects</p>
+        <h3 id="31-junit-plataform"><strong>3.1. JUnit Plataform</strong> </h3>
+        <p>The platform is responsible for launching testing frameworks on the JVM. It defines a stable and powerful
+            interface between JUnit and its clients, such as build tools.</p>
+        <p>The platform easily integrates clients with JUnit to discover and execute tests.</p>
+        <p>It also defines the TestEngine API for developing a testing framework that runs on the JUnit platform. By
+            implementing a custom TestEngine, we can plug 3rd party testing libraries directly into JUnit.</p>
+        <h3 id="32-junit-jupiter"><strong>3.2. JUnit Jupiter</strong> </h3>
+        <p>This module includes new programming and extension models for writing tests in JUnit5. New annotations in
+            comparison to JUnit4 are:</p>
+        <ul>
+            <li><strong>@TestFactory</strong> – denotes a method that’s a test factory for dynamic tests</li>
+            <li><strong>@DisplayName</strong> – defines a custom display name for a test class or a test method</li>
+            <li><strong>@Nested</strong> – denotes that the annotated class is a nested, non-static test class</li>
+            <li><strong>@Tag</strong> – declares tags for filtering tests</li>
+            <li><strong>@ExtendWith</strong> – registers custom extensions</li>
+            <li><strong>@BeforeEach</strong> – denotes that the annotated method will be executed before each test
+                method (previously @Before)</li>
+            <li><strong>@AfterEach</strong> – denotes that the annotated method will be executed after each test method
+                (previously @After)</li>
+            <li><strong>@BeforeAll</strong> – denotes that the annotated method will be executed before all test methods
+                in the current class (previously @BeforeClass)</li>
+            <li><strong>@AfterAll</strong> – denotes that the annotated method will be executed after all test methods
+                in the current class (previously @AfterClass)</li>
+            <li><strong>@Disabled</strong> – disables a test class or method (previously @Ignore)</li>
+        </ul>
+        <h3 id="33-junit-vintage"><strong>3.3. JUnit Vintage</strong> </h3>
+        <p>JUnit Vintage supports running tests based on JUNit3 and JUNit4 on the JUnit5 plataform</p>
+        <hr>
+        <h2 id="4-basic-annotations"><strong>4. Basic Annotations</strong> </h2>
+        <p>To discuss the new annotations, we divided this section into the following groups responsible for execution:
+            before the tests, during the tests (optional), and after the tests.</p>
+        <h3 id="41-beforeall-and-beforeeach"><strong>4.1. @BeforeAll and @BeforeEach</strong> </h3>
+        <p>Below is an examplo of the simple code to be executed before the main test cases:</p>
+        <pre data-role="codeBlock" data-info="Java" class="language-java Java"><code><span class="token annotation punctuation">@BeforeAll</span>
+<span class="token keyword keyword-static">static</span> <span class="token keyword keyword-void">void</span> <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"@BeforeAll - executes once before all test methods in this class"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@BeforeEach</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"@BeforeEach - executes before each test method in this class"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+        <p>It’s important to note that the method with the @BeforeAll annotation needs to be static, otherwise the code
+            won’t compile.</p>
+        <h2 id="42-displayname-and-disabled"><strong>4.2. @DisplayName and @Disabled</strong> </h2>
+        <p>Now let's move to new test-optional methods:</p>
+        <pre data-role="codeBlock" data-info="Java" class="language-java Java"><code><span class="token annotation punctuation">@DisplayName</span><span class="token punctuation">(</span><span class="token string">"Single test successful"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Test</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">testSingleSuccessTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Success"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@Test</span>
+<span class="token annotation punctuation">@Disabled</span><span class="token punctuation">(</span><span class="token string">"Not implemented yet"</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">testShowSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre>
+        <p>As we can see, we can change the display name or disable the method with a comment, using new annotations.
+        </p>
+        <h2 id="43-aftereach-and-afterall"><strong>4.3. @AfterEach and @AfterAll</strong> </h2>
+        <p>Finally, let’s discuss the methods connected to operations after test execution:</p>
+        <pre data-role="codeBlock" data-info="Java" class="language-java Java"><code><span class="token annotation punctuation">@AfterEach</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">tearDown</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"@AfterEach - executed after each test method."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@AfterAll</span>
+<span class="token keyword keyword-static">static</span> <span class="token keyword keyword-void">void</span> <span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"@AfterAll - executed after all test methods."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+        <p>Please note that the method with <code>@AfterAll</code> also needs to be a static method.</p>
+        <hr>
+        <h1 id="5-assertions-and-assumptions"><strong>5. Assertions and Assumptions</strong> </h1>
+        <p>JUnit5 tries to take full advantage of the new features from Java 8, especially lambda expressions.</p>
         <pre data-role="codeBlock" data-info="Java" class="language-java Java"><code><span class="token annotation punctuation">@Test</span>
-<span class="token keyword keyword-public">public</span> <span class="token keyword keyword-void">void</span> <span class="token function">whenNotUseMockAnnotation_thenCorrect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token class-name">List</span> mockList <span class="token operator">=</span> <span class="token class-name">Mockito</span><span class="token punctuation">.</span><span class="token function">mock</span><span class="token punctuation">(</span><span class="token class-name">ArrayList</span><span class="token punctuation">.</span><span class="token keyword keyword-class">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    mockList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"one"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">Mockito</span><span class="token punctuation">.</span><span class="token function">verify</span><span class="token punctuation">(</span>mockList<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"one"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> mockList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">Mockito</span><span class="token punctuation">.</span><span class="token function">when</span><span class="token punctuation">(</span>mockList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">thenReturn</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> mockList<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">lambdaExpressions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">List</span> numbers <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">assertTrue</span><span class="token punctuation">(</span>numbers<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">mapToInt</span><span class="token punctuation">(</span><span class="token class-name">Integer</span><span class="token operator">::</span><span class="token function">intValue</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token string">"Sum should be greater than 5"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+        <p>Although the example above is trivial, one advantage of using the lambda expression for the assertion message
+            is that it’s lazily evaluated, which can save time and resources if the message construction is
+            expensive.<br>
+            It’s also now possible to group assertions with assertAll(), which will report any failed assertions within
+            the group with a MultipleFailuresError:</p>
+        <pre data-role="codeBlock" data-info="Java" class="language-java Java"><code><span class="token annotation punctuation">@Test</span>
+ <span class="token keyword keyword-void">void</span> <span class="token function">groupAssertions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword keyword-int">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> numbers <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+     <span class="token function">assertAll</span><span class="token punctuation">(</span><span class="token string">"numbers"</span><span class="token punctuation">,</span>
+         <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token function">assertEquals</span><span class="token punctuation">(</span>numbers<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+         <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token function">assertEquals</span><span class="token punctuation">(</span>numbers<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+         <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token function">assertEquals</span><span class="token punctuation">(</span>numbers<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+     <span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+</code></pre>
+        <p>This means it’s now safer to make more complex assertions, as we’ll be able to pinpoint the exact location of
+            any failure.</p>
+
     </div>
 
 

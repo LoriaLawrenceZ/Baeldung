@@ -48,7 +48,7 @@ In this case, we must remember to make our rule public.
 
 ---
 
-# **>3. @Mock Annotation**
+# **3. @Mock Annotation**
 
 The most widely used annotation in Mockito is @Mock. We can use @Mock to create and inject mocked instances without having to call Mockito.mock manually.
 In the following example, we’ll create a mocked ArrayList manually without using the @Mock annotation:
