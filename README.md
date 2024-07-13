@@ -8,10 +8,9 @@ Repository oriented for Baeldung study content
 
 ## 📌 Summary
 
-- **Back To Basics** ([Baeldung summary page](https://www.baeldung.com/java-tutorial))
-  - *5. Java Streams* ([Baeldung summary page](https://www.baeldung.com/java-streams))
-    - Introduction to Java 8 ([notes](https://github.com/LoriaLawrenceZ/Baeldung/blob/main/BackToBasics/Streams/StreamBasics/md/IntroductionToStreams.md) | [Baeldung page](https://www.baeldung.com/java-8-streams-introduction))
-    - The Java 8 Stream API ([notes](https://github.com/LoriaLawrenceZ/Baeldung/blob/main/BackToBasics/Streams/StreamBasics/md/StreamAPITutorial.md) | [Baeldung page](https://www.baeldung.com/java-8-streams))
+- **Spring Boot** ([Baeldung](https://www.baeldung.com/spring-boot))
+  - *Spring Boot - Basics*
+    - Spring Boot Tutorial – Bootstrap a Simple Application ([notes]() | [Baeldung](https://www.baeldung.com/spring-boot-start))
 
 ---
 
