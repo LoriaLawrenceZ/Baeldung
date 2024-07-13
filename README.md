@@ -12,6 +12,7 @@ Repository oriented for Baeldung study content
 | :---: | :---: |
 | Back To Basics | `BackToBasics` |
 | Tests | `Tests` |
+| Spring Boot | `spring-boot` |
 
 ---
 
